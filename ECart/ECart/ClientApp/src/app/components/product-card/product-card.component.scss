@@ -1,0 +1,55 @@
+@import "~@angular/material/theming";
+$color-hover: #777777;
+
+.image-card {
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.preview-image {
+  height: 200px;
+  width: 200px;
+  cursor: pointer;
+ 
+}
+
+.product-card {
+  /*min-width: 200px;
+  max-width: 200px;
+  max-height: 400px;*/
+  width: 200px;
+  height: 350px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 20px;
+  box-shadow:  5px 5px 5px navy;
+}
+.card-title {
+  cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.mat-card-content {
+  margin-bottom: 0;
+}
+
+.on-product-card-hover {
+  @include mat-elevation(8, $color-hover, 16);
+}
+
+.favourite {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  padding: 5px;
+}
