@@ -18,12 +18,7 @@ namespace ECart.Controllers
             _cartService = cartService;
         }
 
-        /// <summary>
-        /// Checkout from shopping cart
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="checkedOutItems"></param>
-        /// <returns></returns>
+        
         [HttpPost("{userId}")]
         public int Post(int userId, [FromBody] OrdersDto checkedOutItems)
         {

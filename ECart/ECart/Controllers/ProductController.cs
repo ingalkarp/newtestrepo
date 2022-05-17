@@ -34,21 +34,12 @@ namespace ECart.Controllers
             }
         }
 
-        /// <summary>
-        /// Get the list of available product
-        /// </summary>
-        /// <returns>List of Product</returns>
         [HttpGet]
         public async Task<List<Product>> Get()
         {
             return await Task.FromResult(_productService.GetAllProducts()).ConfigureAwait(true);
         }
 
-        /// <summary>
-        /// Get the specific product data corresponding to the ItemId
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -60,10 +51,7 @@ namespace ECart.Controllers
             return NotFound();
         }
 
-        /// <summary>
-        /// Get the list of available categories
-        /// </summary>
-        /// <returns></returns>
+    
         [HttpGet]
         [Route("GetCategoriesList")]
         public async Task<IEnumerable<Categories>> CategoryDetails()
@@ -71,11 +59,7 @@ namespace ECart.Controllers
             return await Task.FromResult(_productService.GetCategories()).ConfigureAwait(true);
         }
 
-        /// <summary>
-        /// Get the random five products from the category of product whose ItemId is supplied
-        /// </summary>
-        /// <param name="itemId"></param>
-        /// <returns></returns>
+      
         [HttpGet]
         [Route("GetSimilarProducts/{itemId}")]
         public async Task<List<Product>> SimilarProducts(int itemId)
@@ -83,10 +67,6 @@ namespace ECart.Controllers
             return await Task.FromResult(_productService.GetSimilarProducts(itemId)).ConfigureAwait(true);
         }
 
-        /// <summary>
-        /// Add a new product record
-        /// </summary>
-        /// <returns></returns>
         [HttpPost, DisableRequestSizeLimit]
         [Authorize(Policy = UserRoles.Admin)]
         public int Post()
@@ -115,10 +95,7 @@ namespace ECart.Controllers
             return _productService.AddProduct(product);
         }
 
-        /// <summary>
-        /// Update a particular product record
-        /// </summary>
-        /// <returns></returns>
+     
         [HttpPut]
         [Authorize(Policy = UserRoles.Admin)]
         public int Put()
@@ -147,11 +124,7 @@ namespace ECart.Controllers
             return _productService.UpdateProduct(product);
         }
 
-        /// <summary>
-        /// Delete a particular product record
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+      
         [HttpDelete("{id}")]
         [Authorize(Policy = UserRoles.Admin)]
         public int Delete(int id)

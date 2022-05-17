@@ -21,24 +21,13 @@ namespace ECart.Controllers
             _userService = userService;
         }
 
-        /// <summary>
-        /// Get the list of items in the Wishlist
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns>All the items in the Wishlist</returns>
-        [HttpGet("{userId}")]
+            [HttpGet("{userId}")]
         public async Task<List<Product>> Get(int userId)
         {
             return await Task.FromResult(GetUserWishlist(userId)).ConfigureAwait(true);
         }
 
-        /// <summary>
-        /// Toggle the items in Wishlist. If item doesn't exists, it will be added to the Wishlist else it will be removed.
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="itemId"></param>
-        /// <returns>All the items in the Wishlist</returns>
-        [Authorize]
+       [Authorize]
         [HttpPost]
         [Route("ToggleWishlist/{userId}/{itemId}")]
         public async Task<List<Product>> Post(int userId, int itemId)
@@ -47,11 +36,6 @@ namespace ECart.Controllers
             return await Task.FromResult(GetUserWishlist(userId)).ConfigureAwait(true);
         }
 
-        /// <summary>
-        /// Clear the Wishlist
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
         [Authorize]
         [HttpDelete("{userId}")]
         public int Delete(int userId)

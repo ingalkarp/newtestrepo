@@ -28,7 +28,6 @@ namespace ECart
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ProductDBContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
@@ -58,7 +57,6 @@ namespace ECart
 
                 c.OperationFilter<SecurityRequirementsOperationFilter>();
 
-                // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
@@ -78,7 +76,7 @@ namespace ECart
                     ValidIssuer = Configuration["Jwt:Issuer"],
                     ValidAudience = Configuration["Jwt:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SecretKey"])),
-                    ClockSkew = TimeSpan.Zero // Override the default clock skew of 5 mins
+                    ClockSkew = TimeSpan.Zero 
                 };
 
                 services.AddCors();
@@ -92,14 +90,12 @@ namespace ECart
 
             services.AddControllersWithViews();
 
-            // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -109,7 +105,6 @@ namespace ECart
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

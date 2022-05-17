@@ -23,11 +23,6 @@ namespace ECart.Controllers
             _userService = userService;
         }
 
-        /// <summary>
-        /// Login to the application
-        /// </summary>
-        /// <param name="login"></param>
-        /// <returns></returns>
         [HttpPost]
         public IActionResult Login([FromBody] UserMaster login)
         {
